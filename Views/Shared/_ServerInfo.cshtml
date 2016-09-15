@@ -1,0 +1,47 @@
+﻿
+<script type="text/javascript">
+    $(function () {
+    
+        $.getJSON('@Url.Action("ReturnServerInfo","Home")', function (data) {
+
+            if (data.online == true) {
+                $("#ArkServerInfo").html("Server Status: <a href='https://arkservers.net/server/204.12.254.122:27015' target='_blank'> <img src='@Url.Content("~/imgs/Circle_Green_sm.png")' alt='Online'/> </a> (" + data.players + ")");
+
+            }
+
+            else {
+                $("#ArkServerInfo").html("Server Status: <a href='https://arkservers.net/server/204.12.254.122:27015' target='_blank'> <img src='@Url.Content("~/imgs/Circle_Red_sm.png")' alt='Offline'/> </a>");
+            }
+
+        });
+
+    });
+</script>
+
+<p id="ArkServerInfo"></p>
+
+<h1>
+   Server Information
+</h1>
+
+<h3>These are the server settings for Beastlords PVE Server in Ark: Survival Evolved</h3>
+
+
+<ul>
+    <li>3x Difficulty</li>
+    <li>2x taming</li>
+</ul>
+
+
+
+<h1>
+    Server Rules
+</h1>
+<h3>Please follow the rules. If you ignore them and ignore the admin/moderator warnings, you will be ban.</h3>
+<ul>
+    <li>No cheating</li>
+    <li>No blocking caves</li>
+    <li>No Harassing Owners / Moderators of the Server / Or other Users</li>
+    <li>No Excessive Raiding / No Spawn Killing / No Giving out Tribes coordinates in global chat</li>
+    <li>No Spamming Chat</li>
+</ul>

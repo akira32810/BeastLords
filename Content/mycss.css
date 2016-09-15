@@ -1,0 +1,112 @@
+﻿body {
+    margin: 0 auto;
+}
+
+#mainContent {
+    width: 60%;
+    float: right;
+    margin-top: 5%;
+    font-size:16px;
+    font-family: Verdana;
+}
+
+ul li {
+    color:white;
+}
+
+#mainContent p {
+    color:white;
+}
+
+.hHeader {
+    color: #1E90FF;
+    text-shadow: 0 0 30px #1E90FF;
+}
+
+h1{ color: white; font-weight: bold; text-shadow: 0 0 30px #fff;}
+
+h3 { color: white;}
+h4 {
+    color:white;
+}
+
+h5 { color: grey; font-weight:bold; }
+
+#background {
+    position:fixed;
+    z-index: 0;
+    background: url("../imgs/Arkmaxresdefault.jpg") 50% 50% no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+    zoom:1;
+}
+
+#textures {
+    position:fixed;
+    z-index: 10;
+    background: url("../imgs/texture.png") repeat;
+    width: 100%;
+    height: 100%;
+    opacity: 0.9;
+    
+}
+
+.mycontent {
+    position:relative;
+    z-index:20;
+    zoom:1;
+}
+
+button.ArkmenuButton {
+
+
+}
+
+div.blogDate {
+    color:white;
+    font-size:14px;
+    margin-bottom:10px;
+}
+
+hr {clear:both; margin-top:20px;}
+footer {
+    clear:both;
+    color:white;
+}
+
+
+
+label {color:white;}
+input, textarea {
+        font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    padding: 6px 20px;
+    color: rgba(255, 255, 255, 0.8);
+    background-color: ThreeDDarkShadow;
+    border-radius: 20px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
+    border: 2px solid transparent;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    margin-bottom:20px;
+}
+
+textarea {
+    width:500px;
+    height:100px;
+}
+
+.field-validation-error {
+    color:red;
+}

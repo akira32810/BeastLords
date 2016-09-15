@@ -1,0 +1,107 @@
+﻿@section Scripts {
+
+    @Scripts.Render("~/signalr/hubs");
+}
+
+<script type="text/javascript">
+
+    $(function () {
+
+        var chatNickname = "";
+
+        $("#btnstartChat").click(function () {
+            if ($.trim($("#enterName").val()) != "") {
+                chatNickname = $("#enterName").val();
+                $("#getReadyChat").css("display", "none");
+                $("#startChat").css("display", "block");
+                $("#pNickname").html("Your nick name: " + chatNickname + "");
+
+            }
+        });
+
+        $("#enterName").keypress(function (e) {
+
+            if (e.which == 13) {
+                if ($.trim($("#enterName").val()) != "") {
+                    chatNickname = $("#enterName").val();
+                    $("#getReadyChat").css("display", "none");
+                    $("#startChat").css("display", "block");
+                    $("#pNickname").html("Your nick name: " + chatNickname + "");
+
+                }
+            }
+        });
+
+
+        var chat = $.connection.chathub;
+
+        //chat.client.getID = function (theid) {
+        //   // alert(theid);
+        //};
+
+        //get number of users online
+        chat.client.online = function (count) {
+            $("#userOnline").html("Total user(s) online:  " +count);
+        };
+
+        //get username to server side
+
+
+
+        //messages
+        $messages = $("#messages");
+
+        //client side method to access from server side method.
+        chat.client.addMessage = function (frm, msg) {
+            $messages.append("<br/><b>" + frm + ":</b>  " + msg);
+        }
+
+
+
+        $("#txtMsg").keypress(function (e) {
+
+            if (e.which == 13) {
+
+                //get input of textbox
+                var input = $(this).val();
+
+                //send message to "Server Side method"
+                chat.server.sendMessage(chatNickname, input);
+
+                //reset textbox
+
+                $(this).val("");
+
+
+            }
+        });
+
+        $.connection.hub.start().done(function () {
+            chat.server.sendname(chatNickname);
+         
+        });
+        //chat.client.getName = function (thename) {
+        //    alert(chatNickname);
+        //};
+
+    });
+
+</script>
+
+<p>@TempData["chatName"]</p>
+
+<div id="getReadyChat">
+    <label>Enter your nick name:</label>
+    <input type="text" id="enterName" />
+    <input type="button" id="btnstartChat" value="Start Chat!" />
+</div>
+
+<div id="startChat" style="display:none">
+    <p id="pNickname"></p>
+    <p id="userOnline"></p>
+    <p id="listID"></p>
+
+    <h5>Press enter to send message</h5>
+    <input type="text" id="txtMsg" style="width:100%;" />
+    <p id="messages"></p>
+</div>

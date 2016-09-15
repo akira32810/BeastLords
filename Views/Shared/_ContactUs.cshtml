@@ -1,0 +1,75 @@
+﻿@model BeastLords.Models.ContactUs
+
+
+
+    <div id="resultForm">
+        @using (Ajax.BeginForm("ContactUs", new AjaxOptions() {
+  InsertionMode = InsertionMode.Replace,
+  OnBegin = "LoadingDisableSubmit", 
+  UpdateTargetId  = "resultForm"
+
+}))
+
+{   
+   @Html.ValidationSummary(true)
+    @Html.AntiForgeryToken()
+        <fieldset>
+            <legend><h1>Contact Us</h1></legend>
+            <p>When you cannot get help from admins or moderators in game, please use this form. Any other questions or concerns can also be contact through here as well.</p>
+            <div class="form-group">
+                @Html.ValidationMessageFor(model => model.Name)<br />
+                <label>Name / Ark Name:</label>
+                @Html.EditorFor(model => model.Name)
+              
+            </div>
+
+            <div class="form-group">
+           
+                @Html.ValidationMessageFor(model => model.Email) <br />
+                <label>Email:<span style="color:red;"> *</span></label>
+                @Html.EditorFor(model => model.Email)
+            </div>
+
+            <div class="form-group">
+                @Html.ValidationMessageFor(model => model.Subject)<br/>
+                <label>Subject:<span style="color:red;"> *</span></label>
+                @Html.EditorFor(model => model.Subject)
+               
+            </div>
+
+            <div class="form-group">
+                @Html.ValidationMessageFor(model => model.Message)<br/>
+                <label>Message:<span style="color:red;"> *</span></label>
+                @Html.TextAreaFor(model => model.Message)<br/>
+           
+            </div>
+
+            <input id="isendContact" type="submit" value="Send" />
+
+        </fieldset>
+
+}
+
+        <div id="dvloadingImage"></div>
+
+        <script type="text/javascript">
+    $(function () {
+        $("#form0").removeData('validator');
+        $("#form0").removeData('unobtrusiveValidation');
+        $.validator.unobtrusive.parse($("#form0"));
+    });
+
+    function LoadingDisableSubmit() {
+        $("#isendContact").prop('disabled', true);
+        $("#dvloadingImage").html("<img src='@Url.Content("~/imgs/loading_blue.gif")' alt='loadingimg'/>");
+
+    }
+
+        </script>
+
+
+
+
+    </div>
+
+

@@ -1,0 +1,209 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - BeastLords PVE Server</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+
+
+
+</head>
+<body>
+    @section Scripts {
+        @Scripts.Render("~/signalr/hubs");
+    }
+
+
+
+    <div id="background" style="zoom:1;"></div>
+    <div id="textures" style="zoom:1;"></div>
+
+    <div class="container body-content mycontent">
+        @*radial select menu*@
+
+        <div id="mainContent">
+            @RenderBody()
+        </div>
+  
+            <div class='selector'>
+                <ul>
+                    <li>
+                        <input id='1' type='checkbox'>
+                        <label for='1'>Server Info</label>
+                    </li>
+                    <li>
+                        <input id='2' type='checkbox'>
+                        <label for='2'>Upvote Server</label>
+                    </li>
+                    <li>
+                        <input id='3' type='checkbox'>
+                        <label for='3'>Donate</label>
+                    </li>
+                    <li>
+                        <input id='4' type='checkbox'>
+                        <label for='4'>Blog</label>
+                    </li>
+                    <li>
+                        <input id='5' type='checkbox'>
+                        <label for='5'>Chat</label>
+                    </li>
+                    <li>
+                        <input id='6' type='checkbox'>
+                        <label for='6'>Q&A</label>
+                    </li>
+                    <li>
+                        <input id='7' type='checkbox'>
+                        <label for='7'>Home</label>
+       
+                    </li>
+                    <li>
+                        <input id='8' type='checkbox'>
+                        <label for='8'>Contact Us</label>
+                    </li>
+                </ul>
+                <button class="ArkmenuButton"></button>
+            </div>
+      
+      
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - BeastLords Website</p>
+        </footer>
+    </div>
+
+  
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/customscripts")
+    @RenderSection("scripts", required: false)
+
+    <script>
+    var mainC = '#mainContent';
+
+    $("label[for='1']").click(function () {
+
+        $.ajax({
+            url: '@Url.Action("LoadServerInfo", "Home")',
+
+            type: 'GET',
+            success: function (result) {
+                $(mainC).html(result);
+            }
+
+        })
+
+    });
+
+
+
+    $("label[for='2']").click(function () {
+
+        $.ajax({
+            url: '@Url.Action("LoadUpvote","Home")',
+         
+            type: 'GET',
+            success: function (result) {
+                $(mainC).html(result);
+            }
+
+        })
+
+    });
+
+        $("label[for='3']").click(function () {
+
+            $.ajax({
+                url: '@Url.Action("LoadDonate", "Home")',
+
+                type: 'GET',
+                success: function (result) {
+                    $(mainC).html(result);
+                }
+
+            })
+
+        });
+
+
+
+    $("label[for='4']").click(function () {
+
+        $.ajax({
+            url: '@Url.Action("LoadBlog","Home")',
+           
+            type: 'GET',
+            success: function (result) {
+                $(mainC).html(result);
+            }
+
+        })
+
+    });
+
+
+        $("label[for='5']").click(function () {
+            var realurl = "http://www.beastlords.com/home/chat";
+            var relpath = "/home/chat";
+            window.location.href = relpath;
+
+            @*$.ajax({
+                url: '@Url.Action("LoadChat","Home")',
+
+                type: 'GET',
+                success: function (result) {
+                    $(mainC).html(result);
+                }
+
+            })*@
+
+        });
+
+
+
+    $("label[for='6']").click(function () {
+
+        $.ajax({
+            url: '@Url.Action("LoadQA","Home")',
+           
+            type: 'GET',
+            success: function (result) {
+                $(mainC).html(result);
+            }
+
+        })
+
+    });
+
+    $("label[for='7']").click(function () {
+        $.ajax({
+            url: '@Url.Action("LoadHome","Home")',
+          
+            type: 'GET',
+            success: function (result) {
+                $(mainC).html(result);
+
+            }
+        });
+
+    });
+
+    $("label[for='8']").click(function () {
+
+        $.ajax({
+            url: '@Url.Action("ContactNow","Home")',
+                type: 'GET',
+                success: function (result) {
+                    $(mainC).html(result);
+
+                }
+            });
+
+        });
+
+
+    </script>
+
+</body>
+</html>
